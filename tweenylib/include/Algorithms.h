@@ -1,5 +1,5 @@
-#ifndef ALGORITHM_H
-#define ALGORITHM_H
+#ifndef ALGORITHMS_H
+#define ALGORITHMS_H
 
 // Algorithms that should have been in the standard library. :/
 

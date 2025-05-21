@@ -1605,7 +1605,8 @@ static const Uint8 SDL_RenderDebugTextFontData[] = {
     0x00, /* 00000000 */
 
     /*
-     * 197 0xc5 'ÃÂ'
+     * 197 0xc5 'ÃÂ
+'
      */
     0x0c, /* 00110000 */
     0x0c, /* 00110000 */

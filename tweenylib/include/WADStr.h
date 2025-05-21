@@ -1,5 +1,5 @@
-#ifndef STR_H
-#define STR_H
+#ifndef WADSTR_H
+#define WADSTR_H
 
 // This file contains declarations for an abstraction not present in WAD files, the WADStr.
 // Since (almost) all strings in a WAD file are 8 characters regardless of length, 
@@ -10,6 +10,7 @@
 
 C_BEGIN
 
+#include "Annotations.h"
 #include "Types.h"
 
 // We always use this as a limit for functions used on WAD strings of undetermined length.
@@ -20,11 +21,17 @@ C_BEGIN
 // Keep in mind that WADStrs are DEFINITIONALLY NOT ALWAYS NULL TERMINATED
 typedef struct WADStr_s
 {
-	wad_char data[WAD_STR_DATA_LENGTH]; // Not null terminated.
+    wad_char data[WAD_STR_DATA_LENGTH]; // Not null terminated.
 } WADStr;
 
-// Convert a WADStr to a CStr to work with
-ww_ok ToCStr_WADStr(wad_char* r, const WADStr const* wadStr);
+// Compare two WADStrs, [lhs] being the left-hand side and [rhs] being the right-hand side
+ww_comp Compare_WADStr(const WADStr* const lhs, const WADStr* const rhs);
+
+// Create a new wadstring from an ascii string buffer
+ww_ok NewFromAsciiCStr_WADStr(WADStr* wwa_result r, const wad_char* cStr);
+
+// Convert a WADStr to a ascii CStr to work with
+ww_ok ToUTF8CStr_WADStr(ww_char** wwa_result r, const WADStr* const wadStr);
 
 C_END
 

@@ -1,0 +1,20 @@
+WADsworth Programmer's Style Guide:
+
+- No line will have more than 100 columns
+
+- All functions, global variables, and constants must have an associated comment describing what
+they do
+    - All code being refered to inside a comment must be surrounded in square brackets
+
+    - All macros must have an associated comment too, and if the macro is function like, then the
+    types of each argument and the return value must be written explicitly in said comment
+
+    - Any code you think might *not* be self-evident to the outside reader probably isn't, so
+    comment that too
+
+- All programmer defined types are in pascal case, all typedefs of primitive types are in snake
+case, all constants are in upper snake case.
+
+- Handle all cases and check all error codes, even if you're just gonna crash the program if reached
+
+- Prefer to indent with four spaces instead of one tab

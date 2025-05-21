@@ -1,7 +1,9 @@
-#ifndef ANNOTATION_H
-#define ANNOTATION_H
+#ifndef ANNOTATIONS_H
+#define ANNOTATIONS_H
 
 #include "C.h"
+
+// Macros to use based on the style guidelines in StyleGuide.txt
 
 C_BEGIN
 
@@ -15,11 +17,11 @@ C_BEGIN
 // if someone changes a function and one of the comments, but not the other?
 // Documentation inconsistency.
 // So this exists for consistency's sake.
-#define foreword_declaration
+#define wwa_foreword_declaration
 
 // Place in front of parameters that are to be return values assigned to via 
 // a pointer. No tuples in C, at least not yet.
-#define result
+#define wwa_result
 
 C_END
 

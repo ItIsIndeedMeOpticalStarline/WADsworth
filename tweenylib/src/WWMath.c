@@ -1,4 +1,4 @@
-#include "Math.h"
+#include "WWMath.h"
 
 int8 Max8(int8 a, int8 b) { return a > b ? a : b; }
 uint8 MaxU8(uint8 a, uint8 b) { return a > b ? a : b; }

@@ -1,5 +1,5 @@
-#ifndef MATH_H
-#define MATH_H
+#ifndef WWMATH_H
+#define WWMATH_H
 
 // General mathematical functions which should exist in math.h but do not because god is dead
 
@@ -29,17 +29,17 @@ fpnt64 MaxF64(fpnt64 a, fpnt64 b);
 // - [b]: _Generic, see implementation
 // Return type: _Generic, see implementation
 #define Max(a, b) _Generic(((a) + (b)),	\
-	int8: Max8,							\
-	uint8: MaxU8,						\
-	int16: Max16,						\
-	uint16: MaxU16,						\
-	int32: Max32,						\
-	uint32: MaxU32,						\
-	int64: Max64,						\
-	uint64: MaxU64,						\
-	fpnt32: MaxF32,						\
-	fpnt64: MaxF64						\
-	)((a), (b))
+    int8: Max8,							\
+    uint8: MaxU8,						\
+    int16: Max16,						\
+    uint16: MaxU16,						\
+    int32: Max32,						\
+    uint32: MaxU32,						\
+    int64: Max64,						\
+    uint64: MaxU64,						\
+    fpnt32: MaxF32,						\
+    fpnt64: MaxF64						\
+    )((a), (b))
 
 int8 Min8(int8 a, int8 b);
 uint8 MinU8(uint8 a, uint8 b);
@@ -58,25 +58,26 @@ fpnt64 MinF64(fpnt64 a, fpnt64 b);
 // - [b]: _Generic, see implementation
 // Return type: _Generic, see implementation
 #define Min(a, b) _Generic(((a) + (b)),	\
-	int8: Min8,							\
-	uint8: MinU8,						\
-	int16: Min16,						\
-	uint16: MinU16,						\
-	int32: Min32,						\
-	uint32: MinU32,						\
-	int64: Min64,						\
-	uint64: MinU64,						\
-	fpnt32: MinF32,						\
-	fpnt64: MinF64						\
-	)((a), (b))
+    int8: Min8,							\
+    uint8: MinU8,						\
+    int16: Min16,						\
+    uint16: MinU16,						\
+    int32: Min32,						\
+    uint32: MinU32,						\
+    int64: Min64,						\
+    uint64: MinU64,						\
+    fpnt32: MinF32,						\
+    fpnt64: MinF64						\
+    )((a), (b))
 
-// Call to limit [value] to be between [min] and [max]
+// TODO: Will not work but also will not fail if minimum > maximum
+// Call to limit [value] to be between [minimum] and [maximum]
 // Types:
 // - [value]: _Generic, see implementation
-// - [min]: _Generic, see implementation
-// - [max]: _Generic, see implementation
+// - [minimum]: _Generic, see implementation
+// - [maximum]: _Generic, see implementation
 // Return type: _Generic, see implementation
-#define Clamp(value, min, max) Max((min), Min((value), (max)))
+#define Clamp(value, minimum, maximum) Max((minimum), Min((value), (maximum)))
 
 C_END
 

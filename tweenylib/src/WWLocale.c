@@ -20,11 +20,10 @@ ww_char* AsciiToUTF8(const wad_char* const buffer, size strLength)
     {
         result = Allocate(sizeof *result);
         *result = '\0';
-        return true;
+        return result;
     }
 
-    size resultByteSize = sizeof *result * (strLength + 1);
-    result = ZAllocate(resultByteSize);
+    result = ZAllocate(sizeof *result * (strLength + 1));
 
     // Could use memcpy_s here, but memcpy_s can fail and it'd go against my own rules to use 
     // normal memcpy. The compiler will probably optimize it away anyways.

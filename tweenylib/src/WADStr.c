@@ -19,12 +19,11 @@ ww_comp Compare_WADStr(const WADStr* const lhs, const WADStr* const rhs)
 
 ww_ok NewFromAsciiCStr_WADStr(WADStr* wwa_result r, const wad_char* cStr)
 {
-    const size wadStrByteSize = sizeof *r->data * WAD_STR_DATA_LENGTH;
-    *r = (WADStr){ ZAllocate(wadStrByteSize) };
+    *r = (WADStr){ .data = { 0 } };
 
     // memcpy_s and not strncpy_s because strncpy_s writes a null terminator for you that would
     // break compatability here
-    errno_t err = memcpy_s(r->data, wadStrByteSize, cStr, strnlen_s(cStr, WAD_STR_DATA_LENGTH));
+    errno_t err = memcpy_s(r->data, sizeof *r->data * WAD_STR_DATA_LENGTH, cStr, strnlen_s(cStr, WAD_STR_DATA_LENGTH));
     if (err != 0)
     {
         free(r->data);

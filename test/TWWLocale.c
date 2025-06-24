@@ -1,17 +1,40 @@
 ﻿#include "WWLocale.h"
 
+TEST(CString, ascii_to_utf8)
+{
+    UTF8Me();
+
+    int8 asciiString[127] = { 0 };
+
+    for (size i = 0; i < 127; i++)
+        asciiString[i] = (int8)i + 1;
+
+    ww_char* utf8String = AsciiToUTF8(asciiString, 127);
+    CHECK_NE(utf8String, NULL);
+
+    const ww_char* const expectedUTF8String = u8"\x1\x2\x3\x4\x5\x6\x7\x8\x9\xA\xB\xC\xD\xE\xF"
+                                              u8"\x10\x11\x12\x13\x14\x15\x16\x17\x18\x19\x1A\x1B\x1C\x1D\x1E\x1F"
+                                              u8" !\"#$%&'()*+,-./"
+                                              u8"0123456789:;<=>?"
+                                              u8"@ABCDEFGHIJKLMNO"
+                                              u8"PQRSTUVWXYZ[\x5C]^_"
+                                              u8"`abcdefghijklmno"
+                                              u8"pqrstuvwxyz{|}~\x7F";
+
+    CHECK_STREQ(utf8String, expectedUTF8String);
+}
+
 TEST(CString, latin_1_to_utf8)
 {
     UTF8Me();
 
-    uint8 latinString[256] = { 0 };
+    uint8 latinString[255] = { 0 };
 
-    for (size i = 0; i < 0xFF; i++)
+    for (size i = 0; i < 255; i++)
         latinString[i] = (uint8)i + 1;
 
-    ww_char* utf8String;
-    ww_ok ok = Latin1ToUTF8(&utf8String, latinString);
-    CHECK_EQ((int)ok, (int)1);
+    ww_char* utf8String = Latin1ToUTF8(latinString, 255);
+    CHECK_NE(utf8String, NULL);
 
     const ww_char* const expectedUTF8String = u8"\x1\x2\x3\x4\x5\x6\x7\x8\x9\xA\xB\xC\xD\xE\xF"
                                               u8"\x10\x11\x12\x13\x14\x15\x16\x17\x18\x19\x1A\x1B\x1C\x1D\x1E\x1F"
@@ -39,12 +62,12 @@ TEST(CString, utf16_to_utf8)
 {
     UTF8Me();
 
-    wchar_t utf16String[65536] = {0};
+    wchar_t utf16String[65535] = {0};
 
-    for (size i = 0; i < 0xFFFF; i++)
+    for (size i = 0; i < 65535; i++)
         utf16String[i] = (wchar_t)i + 1;
 
     ww_char* utf8String;
-    ww_ok ok = UTF16ToUTF8(&utf8String, utf16String);
+    ww_ok ok = UTF16ToUTF8(&utf8String, utf16String, 65535);
     CHECK_EQ((int)ok, (int)1);
 }
